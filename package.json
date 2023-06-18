@@ -1,0 +1,24 @@
+{
+  "name": "typescript_practice",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "lite-server"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AnatoliiStepanovLikhoi/typesript_practice.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/AnatoliiStepanovLikhoi/typesript_practice/issues"
+  },
+  "homepage": "https://github.com/AnatoliiStepanovLikhoi/typesript_practice#readme",
+  "dependencies": {
+    "lite-server": "^2.6.1"
+  }
+}
