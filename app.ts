@@ -41,3 +41,46 @@ arrObj = [{ name: "Alex" }, { name: "Nikita" }];
 let object: { name: string };
 object = { name: "Alex" };
 object.name;
+
+let db: {
+  id: number;
+  title: string;
+  info?: {
+    date: Date;
+    isNew: boolean;
+  };
+};
+
+db = {
+  id: 1,
+  title: "New product",
+  info: {
+    date: new Date(),
+    isNew: true,
+  },
+};
+
+//
+
+const fruit: string[] = [];
+
+function workWithArr(arr: string[], value: string, action: "add" | "delete") {
+  if (action === "add") {
+    arr.push(value);
+  } else {
+    const index = arr.indexOf(value);
+
+    arr.splice(index, 1);
+  }
+
+  return arr;
+}
+
+workWithArr(fruit, "Banana", "add");
+workWithArr(fruit, "Melon", "add");
+workWithArr(fruit, "Pear", "add");
+workWithArr(fruit, "Bear", "add");
+
+workWithArr(fruit, "Pear", "delete");
+
+console.log(fruit);

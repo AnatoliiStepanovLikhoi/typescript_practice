@@ -9,3 +9,8 @@ arr.map((item) => item + 1);
 const coordinates: [number, number] = [60.12312, 60.123456];
 
 // coordinates.push(123);
+
+let fixed: [string, number];
+fixed = ["str", 1];
+fixed.push("new");
+fixed.pop();
