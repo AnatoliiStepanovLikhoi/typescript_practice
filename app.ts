@@ -84,3 +84,23 @@ workWithArr(fruit, "Bear", "add");
 workWithArr(fruit, "Pear", "delete");
 
 console.log(fruit);
+
+//
+
+function calc(
+  num1: number,
+  num2: number,
+  callback: (arg1: number, arg2: number) => number
+) {
+  return callback(num1, num2);
+}
+
+function foo2(num1: number, num2: number) {
+  return num1 + num2;
+}
+
+const result2 = calc(1, 3, foo2);
+
+console.log(result2);
+
+//
