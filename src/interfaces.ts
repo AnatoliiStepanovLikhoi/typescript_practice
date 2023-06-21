@@ -82,9 +82,32 @@ class Boeing extends Plane {
   }
 }
 
-const pilot = new Pilot("Max", 32);
+class Terrorist implements IPilot {
+  public flyMessage(): void {
+    console.log("We want 9 millions or we kill all pax");
+  }
+}
 const boeing = new Boeing();
+const pilot = new Terrorist();
 
-pilot.greet("Capitan is greeting you, my name is ");
 boeing.sitInplane(pilot);
+
 boeing.startEngine();
+
+// const pilot = new Pilot("Max", 32);
+
+// pilot.greet("Capitan is greeting you, my name is ");
+// boeing.sitInplane(pilot);
+// boeing.startEngine();
+
+//Interface as function
+
+// type AddFunc = (n1: number, n2: number) => number;
+
+interface AddFunc {
+  (n1: number, n2: number): number;
+}
+
+const foo1: AddFunc = (n1: number, n2: number) => {
+  return n1 + n2;
+};
