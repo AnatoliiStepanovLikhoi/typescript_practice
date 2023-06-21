@@ -103,4 +103,4 @@ const result2 = calc(1, 3, foo2);
 
 console.log(result2);
 
-//
+

@@ -75,3 +75,35 @@ obj2.showCount();
 obj3.showCount();
 
 UseStatic.isStaticMethod();
+
+// Abstract classes
+
+// abstract class Plane {
+//   protected pilotInCabin = false;
+
+//   public sitInplane() {
+//     this.pilotInCabin = true;
+//   }
+
+//   public abstract startEngine(): string;
+// }
+
+// class Maize extends Plane {
+//   public startEngine() {
+//     return "Ta-ta-ta";
+//   }
+// }
+// class Boeing extends Plane {
+//   public startEngine() {
+//     return "Buuuuu";
+//   }
+// }
+
+// const maize = new Maize();
+// const boeing = new Boeing();
+
+// maize.sitInplane();
+// boeing.sitInplane();
+
+// console.log(maize.startEngine());
+// console.log(boeing.startEngine());
