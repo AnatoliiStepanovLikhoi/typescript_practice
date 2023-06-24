@@ -111,3 +111,33 @@ interface AddFunc {
 const foo1: AddFunc = (n1: number, n2: number) => {
   return n1 + n2;
 };
+
+//Index Props
+
+interface Person {
+  name: string;
+  age: number;
+  [x: string]: string | number;
+}
+
+const user4: Person = {
+  name: "Max",
+  age: 30,
+  gender: "man",
+  country: "UA",
+};
+
+//Optional chaining
+
+interface Person2 {
+  name: string;
+  additionalInfo?: {
+    someInfo: string;
+  };
+}
+
+const user5: Person2 = {
+  name: "Max",
+};
+
+// user5?.additionalInfo?.someInfo

@@ -49,3 +49,62 @@ function combineNums(a: ComplexType, b: ComplexType) {
 
   return a + b;
 }
+
+//Guards in classes
+abstract class Guy {
+  constructor(public name: string) {}
+}
+
+class Good extends Guy {
+  advise() {
+    console.log("advise");
+  }
+}
+
+class Bad extends Guy {
+  insult() {
+    console.log("insult");
+  }
+}
+
+const good = new Good("John");
+const bad = new Good("Sergey");
+
+function guys(user: Guy) {
+  if (user instanceof Good) {
+    user.advise();
+  }
+
+  if (user instanceof Bad) {
+    user.insult();
+  }
+}
+
+//Type casting
+
+const input = document.getElementById("inputEmail") as HTMLInputElement;
+
+if (input) {
+  const newInput = input;
+  newInput.value;
+}
+
+//NUllish coalescing
+
+const userInput = null;
+
+const store = userInput ?? "Default";
+
+console.log(store);
+
+//Function overload
+
+function add1(a: number, b: number): number;
+function add1(a: string, b: string): string;
+function add1(a: string | number, b: string | number) {
+  if (typeof a === "string" || typeof b === "string") {
+    return a.toString() + b.toString();
+  }
+
+  return a + b;
+}
