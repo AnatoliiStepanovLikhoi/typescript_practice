@@ -53,3 +53,38 @@ function extractValue<T extends object, U extends keyof T>(obj: T, key: U) {
 }
 
 const field = extractValue({ name: "Anton" }, "name");
+
+//Generic classes
+
+class DataStore<T> {
+  private data: T[] = [];
+
+  addItem(item: T): void {
+    this.data.push(item);
+  }
+
+  getItems(): T[] {
+    return this.data;
+  }
+}
+
+interface IUser {
+  name: string;
+}
+
+const storeUsers = new DataStore<IUser>();
+
+storeUsers.addItem({
+  name: "Max",
+});
+
+storeUsers.addItem({
+  name: "Anton",
+});
+
+console.log(storeUsers.getItems());
+
+const ageStore = new DataStore<number>();
+
+ageStore.addItem(21);
+ageStore.addItem(30);
