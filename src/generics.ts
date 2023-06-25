@@ -88,3 +88,38 @@ const ageStore = new DataStore<number>();
 
 ageStore.addItem(21);
 ageStore.addItem(30);
+
+//Utility Types
+// Partial
+interface IUser2 {
+  name: string;
+  age: number;
+}
+
+function createPerson2(name: string): IUser2 {
+  const person: Partial<IUser2> = {
+    name,
+  };
+  person.age = 21;
+
+  return person as IUser2;
+}
+
+//Readonly
+
+const obj6: Readonly<IUser> = {
+  name: "Max",
+};
+// obj6.name = "";
+
+//Pick
+interface Page {
+  title: string;
+  annotation: string;
+  numberPage: number;
+}
+
+const pageNotation: Pick<Page, "annotation" | "numberPage"> = {
+  annotation: "Small page",
+  numberPage: 1,
+};
