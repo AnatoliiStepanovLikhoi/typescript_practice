@@ -101,6 +101,4 @@ function foo2(num1: number, num2: number) {
 
 const result2 = calc(1, 3, foo2);
 
-console.log(result2);
-
-
+// console.log(result2);

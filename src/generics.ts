@@ -44,7 +44,7 @@ const obj5 = {
   lenght: 10,
 };
 
-console.log(getLength(obj5));
+// console.log(getLength(obj5));
 
 //keyof
 
@@ -82,7 +82,7 @@ storeUsers.addItem({
   name: "Anton",
 });
 
-console.log(storeUsers.getItems());
+// console.log(storeUsers.getItems());
 
 const ageStore = new DataStore<number>();
 

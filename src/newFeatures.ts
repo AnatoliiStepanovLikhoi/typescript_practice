@@ -11,9 +11,17 @@ class Employee {
   }
 }
 
-function logIt(originalMethod: any, context: any) {
-  return function replacementMethod(this: any, ...args: any[]) {
-    console.log(`Entered ${context.name}`);
-    originalMethod.call(this, ...args);
+function logIt(
+  target: any,
+  propertyKey: string,
+  descriptor: PropertyDescriptor
+) {
+  const originalMethod = descriptor.value;
+
+  descriptor.value = function replacementMethod(this: any, ...args: any[]) {
+    console.log(`Entered ${propertyKey}`);
+    originalMethod?.apply(this, args);
   };
+
+  return descriptor;
 }
