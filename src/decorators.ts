@@ -62,3 +62,71 @@ class Controller {
 
 const controller2 = new Controller();
 const controller3 = new Controller();
+
+//Methods decorators
+
+function showParams(target: any, name: string, descriptor: PropertyDescriptor) {
+  console.log("target", target);
+  console.log("name", name);
+  console.log("descriptor", descriptor);
+}
+
+function AutoBind(_: any, _2: string, descriptor: PropertyDescriptor) {
+  const method = descriptor.value as Function;
+
+  return {
+    configurable: true,
+    enumerable: false,
+    get() {
+      return method.bind(this);
+    },
+  };
+}
+
+class Notifier {
+  public content = "Message in class";
+
+  @showParams
+  @AutoBind
+  showMessage() {
+    console.log(this.content);
+  }
+}
+
+const notifier = new Notifier();
+
+const showMessage = notifier.showMessage;
+
+notifier.showMessage();
+showMessage();
+
+//
+
+function AddTax(taxPercent: number) {
+  return function (_: any, _2: string, descriptor: PropertyDescriptor) {
+    const method = descriptor.value as Function;
+
+    return {
+      configurable: true,
+      enumerable: false,
+      get() {
+        return (...args: any[]) => {
+          const result = method.apply(this, args);
+
+          return result + (result / 100) * taxPercent;
+        };
+      },
+    };
+  };
+}
+
+class Payment {
+  @AddTax(20)
+  pay(money: number) {
+    return money;
+  }
+}
+
+const payment = new Payment();
+
+console.log(payment.pay(100));
