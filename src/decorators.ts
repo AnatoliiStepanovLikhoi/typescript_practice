@@ -181,3 +181,71 @@ class Person3 {
 const person5 = new Person3();
 
 person5.setEmail("test@test.com");
+
+//Props decorators
+
+interface ValidationConfig {
+  [prop: string]: {
+    [validationProp: string]: string[];
+  };
+}
+
+const registeredValidation: ValidationConfig = {};
+
+function Required(target: any, propName: string) {
+  registeredValidation[target.constructor.name] = {
+    ...registeredValidation[target.constructor.name],
+    [propName]: ["required"],
+  };
+}
+
+function PositiveNumber(target: any, propName: string) {
+  registeredValidation[target.constructor.name] = {
+    ...registeredValidation[target.constructor.name],
+    [propName]: ["positive"],
+  };
+}
+
+function validation(obj: any) {
+  const objValidation = registeredValidation[obj.constructor.name];
+
+  if (!objValidation) {
+    return true;
+  }
+
+  let isValid = true;
+
+  for (const prop in objValidation) {
+    for (const validProp of objValidation[prop]) {
+      switch (validProp) {
+        case "required":
+          isValid = isValid && !!obj[prop];
+          break;
+        case "positive":
+          isValid = isValid && obj[prop] > 0;
+          break;
+      }
+    }
+  }
+
+  return isValid;
+}
+
+class Person {
+  @Required
+  public name: string;
+  @PositiveNumber
+  public age: number;
+  constructor(n: string, a: number) {
+    this.name = n;
+    this.age = a;
+  }
+}
+
+const person6 = new Person("Max", -32);
+
+if (!validation(person6)) {
+  console.log("Not valid");
+} else {
+  console.log("Valid");
+}

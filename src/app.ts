@@ -83,7 +83,7 @@ workWithArr(fruit, "Bear", "add");
 
 workWithArr(fruit, "Pear", "delete");
 
-console.log(fruit);
+// console.log(fruit);
 
 //
 
