@@ -130,3 +130,54 @@ class Payment {
 const payment = new Payment();
 
 console.log(payment.pay(100));
+
+//Parameters decorators
+
+function CheckEmail(target: any, nameMethod: string, position: number) {
+  if (!target[nameMethod].validation) {
+    target[nameMethod].validation = {};
+  }
+
+  Object.assign(target[nameMethod].validation, {
+    [position]: (value: string) => {
+      if (value.includes("@")) {
+        return value;
+      }
+
+      throw new Error("Not valid email!");
+    },
+  });
+}
+
+function Validation(_: any, _2: string, descriptor: PropertyDescriptor) {
+  const method = descriptor.value;
+
+  return {
+    configurable: true,
+    enumerable: false,
+    get() {
+      return (...args: any[]) => {
+        if (method.validation) {
+          args.forEach((item, index) => {
+            if (method.validation[index]) {
+              args[index] = method.validation[index](item);
+            }
+          });
+        }
+
+        return method.apply(this, args);
+      };
+    },
+  };
+}
+
+class Person3 {
+  @Validation
+  setEmail(@CheckEmail email: string) {
+    console.log(email);
+  }
+}
+
+const person5 = new Person3();
+
+person5.setEmail("test@test.com");
