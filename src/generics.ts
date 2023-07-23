@@ -123,3 +123,44 @@ const pageNotation: Pick<Page, "annotation" | "numberPage"> = {
   annotation: "Small page",
   numberPage: 1,
 };
+
+///
+
+const addIdToObj = <TObj>(obj: TObj) => {
+  return {
+    ...obj,
+    id: "123",
+  };
+};
+
+const result = addIdToObj({ firstName: "Sava", lastName: "Kava" });
+
+// console.log(result);
+
+//!Promise return type
+
+type GetPromiseReturnType<T extends (...args: any) => any> = Awaited<
+  ReturnType<T>
+>;
+
+type Result = GetPromiseReturnType<
+  () => Promise<{
+    firstName: string;
+    lastName: string;
+  }>
+>;
+
+// type ErrorLine = GetPromiseReturnType<string>;
+
+//!Multiple generics
+
+const getValue = <TObj, TKey extends keyof TObj>(obj: TObj, key: TKey) => {
+  if (key === "bad") {
+    throw Error(`don't assess bad key`);
+  }
+  return obj[key];
+};
+
+const result3 = getValue({ a: 1, b: "some string", c: true }, "c");
+
+console.log(result3);
