@@ -164,3 +164,115 @@ const getValue = <TObj, TKey extends keyof TObj>(obj: TObj, key: TKey) => {
 const result3 = getValue({ a: 1, b: "some string", c: true }, "c");
 
 console.log(result3);
+
+/// Generic practice
+
+const valueFactory = (x: number) => x;
+const myValue = valueFactory(11);
+
+type TypeFactory<X> = X;
+type MyType = TypeFactory<string>;
+
+interface ValueContainer<Value> {
+  value: Value;
+}
+
+type StringContainer = ValueContainer<string>;
+
+const x: StringContainer = {
+  value: "rgrgrg",
+};
+
+// class ArrayOfNumbers {
+//   constructor(public collection: number[]) {}
+
+//   get(index: number): number {
+//     return this.collection[index];
+//   }
+// }
+
+// class ArrayOfStrings {
+//   constructor(public collection: string[]) {}
+
+//   get(index: number): string {
+//     return this.collection[index];
+//   }
+// }
+
+class ArrayOfAnything<Type> {
+  constructor(public collection: Type[]) {}
+
+  get(index: number): Type {
+    return this.collection[index];
+  }
+}
+
+new ArrayOfAnything<number>([1, 2, 3]);
+new ArrayOfAnything<string>(["1", "2", "3"]);
+
+///
+
+function printString(arr: string[]): void {
+  for (let index = 0; index < arr.length; index++) {
+    console.log(arr[index]);
+  }
+}
+
+function printNumber(arr: number[]): void {
+  for (let index = 0; index < arr.length; index++) {
+    console.log(arr[index]);
+  }
+}
+
+function printAnything<T>(arr: T[]): void {
+  for (let index = 0; index < arr.length; index++) {
+    console.log(arr[index]);
+  }
+}
+
+printAnything<number>([1, 2, 34]);
+
+///
+
+function fillArray<T>(length: number, el: T): T[] {
+  return new Array<T>(length).fill(el);
+}
+
+const array1 = fillArray<string>(10, "*");
+
+///
+
+interface Array<T> {
+  concat(...items: Array<T[] | T>): T[];
+
+  reduce<U>(
+    callback: (state: U, element: T, index: number, array: T[]) => U,
+    firstState?: U
+  ): U;
+}
+
+///
+
+interface Lengthwise {
+  length: number;
+}
+
+function printLength<T extends Lengthwise>(arg: T): number {
+  return arg.length;
+}
+
+printLength("1");
+
+///
+
+function getProperty<T, K extends keyof T>(obj: T, key: K) {
+  return obj[key];
+}
+
+const myNewObj = {
+  a: 1,
+  b: 2,
+  c: 3,
+};
+
+getProperty(myNewObj, "b");
