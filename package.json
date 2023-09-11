@@ -23,6 +23,7 @@
     "lite-server": "^2.6.1"
   },
   "devDependencies": {
+    "@total-typescript/ts-reset": "^0.5.1",
     "ts-node": "^10.9.1"
   }
 }
