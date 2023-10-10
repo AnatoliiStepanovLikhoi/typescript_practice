@@ -1,6 +1,6 @@
 const a = JSON.parse('{"a": 1}');
 
-if (typeof a === "object" && a != null && "a" in a) {
+if (typeof a === "object" && a !== null && "a" in a) {
   a.a;
 }
 
